@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show ,:edit, :update, :cleate]
+  before_action :set_picture, only: [:edit, :update, :cleate]
   def index
     if params[:id] == nil
       @pictures = current_user.pictures.order(created_at: "DESC")
