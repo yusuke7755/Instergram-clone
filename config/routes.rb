@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/index'
   root to: 'sessions#index'
   resources :favorites, only: [ :create, :index,:destroy]
   resources :sessions, only: [:new, :create, :destroy, :index]
