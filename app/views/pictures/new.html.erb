@@ -1,0 +1,22 @@
+<body>
+  <h3>投稿しよう</h3>
+  <%= form_with(model: @picture, url: confirm_pictures_path, local: true) do |form| %>
+    <% if @picture.errors.any? %>
+      <div id="error_explanation">
+          <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @picture.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+          <p><%= form.label :content %></p>
+          <p><%= form.text_area :content , size: "40-20" %></p>
+          <p><%= form.label :image %><p>
+          <p><%= form.file_field :image %></p>
+          <p><%= form.hidden_field :image_cache %></p>
+      <p><%= form.submit "投稿する" %><p>
+  <% end %>
+  <button><%= link_to "一覧画面にもどる", pictures_path %></button>
+</body>

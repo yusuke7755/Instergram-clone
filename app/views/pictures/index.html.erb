@@ -1,0 +1,48 @@
+<% provide(:title, 'index') %>
+
+  <% if @pictures.count == 0 %>
+    <%  if  @flg == 0 %> 
+      <h3><%= current_user.nickname %> さん</h3></br>
+      <button><%= link_to "Imageを共有しよう", new_picture_path %></button></br>
+    <% else  %>
+      <h3>投稿ありません</h3></br>
+      <button><%= link_to "ユーザー一覧" , users_path %></button>
+    <% end %>
+  <% else %>
+      <% if @pictures[0].user_id == current_user.id %>
+        <h3><%= current_user.nickname %> さん</h3></br>
+        <button><%= link_to "Imageを共有しよう", new_picture_path %></button></br>
+      <% else %>
+        <h3><%= @pictures[0].user.nickname %> さん</h3></br>
+      <% end %>
+  
+    <body>
+    <% @pictures.each do |picture| %>
+      <table>
+        <tr>
+            <td><%= image_tag(picture.image.url) if picture.image && picture.image.url %></td>
+        </tr>
+        <tr>
+            <td><%= picture.content %></td>
+        </tr>
+        <tr>
+            <td><%= picture.created_at.strftime("%Y年 %m月 %d日 %H時 %M分") %></td>
+        </tr>
+        <tr>
+            <td>
+              <% if current_user.id == picture.user_id %>
+                <button><%= link_to '詳細', picture_path(picture.id) %></button>
+                <button><%= link_to '編集', edit_picture_path(picture.id) %></button>
+                <button><%= link_to '削除', picture_path(picture.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></button>
+              <% else %>
+                <button><%= link_to 'お気に入り', favorites_path(picture_id: picture.id, user_id: picture.user_id), method: :post ,data: { confirm: 'お気に入りにしますか？' } %></button>
+              <% end %>
+            </td>
+        </tr>
+      </table>
+    <% end %>
+    </body>
+  <% end %>
+
+
+

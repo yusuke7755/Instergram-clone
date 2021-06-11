@@ -1,0 +1,33 @@
+
+<body>
+
+  <% if @favorites.count == 0 %>
+        <h3>お気に入りがありません。</h3></br>
+      <button><%= link_to "ユーザー一覧" , users_path %></button></br>
+      <p></p>
+  <% else %>
+  　<h3>お気に入り一覧</h3>
+    <% @favorites.each do |favorite| %>
+      <table>
+        <tr>
+           <td><%= image_tag(favorite.picture.image.url) if favorite.picture.image && favorite.picture.image.url %></td> 
+        </tr>
+        <tr>
+            <td><%= favorite.picture.user.nickname %></td>
+        </tr>
+        <tr>
+            <td><%= favorite.picture.content %></td>
+        </tr>
+        <tr>
+            <td><%= favorite.picture.created_at.strftime("%Y年 %m月 %d日 %H時 %M分") %></td>
+        </tr>
+        <tr>
+            <td>
+            <%= link_to 'お気に入り解除する', favorite_path(id: favorite.id), method: :delete, class: 'btn btn-danger',data: { confirm: 'お気に入り解除しますか？' } %>
+            </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+</body>
+<button><%= link_to "メインページに戻る", pictures_path %></button>

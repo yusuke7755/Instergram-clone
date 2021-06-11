@@ -1,0 +1,23 @@
+
+<h3>ユーザー一覧</h3>
+<body>
+    <% if @users.count > 0 %>
+        <% @users.each do |u| %>
+        <table>
+          <tr>
+              <td><%= image_tag(u.my_image.url) if u.my_image && u.my_image.url %></td>
+          </tr>
+          <tr>
+              <td><%=u.nickname  %></td>
+          </tr>
+          <tr>
+            <td> <%= u.comment  %> </td>
+          </tr>
+          <tr>
+            <td><button><%= link_to '投稿を見る', pictures_path(id: u.id) %></button></td>
+          </tr>
+        </table>
+        <%end %>
+    <%end %>
+<body>
+<button><%= link_to "メインページに戻る", pictures_path %></button>

@@ -1,0 +1,44 @@
+<% provide(:title, 'edit') %>
+<body>
+<h3>プロフィール編集</h3>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with(model: @user, local: true) do |f| %>
+    <p><%= f.label :ユーザーネーム %></p>
+    <p><%= f.text_field :nickname %></p>
+    <p><%= f.label :Ｅメール %></p>
+    <p><%= f.email_field :email %></p>
+    <p><%= f.label :パスワード（再入力） %></p>
+    <p><%= f.password_field :password %></p>
+    <p><%= f.label :パスワード（確認） %></p>
+    <p><%= f.password_field :password_confirmation %></p>
+    <p><%= f.label :お名前 %></p>
+    <p><%= f.text_field :user_name %></p>
+    <p><%= f.label :自己紹介 %></p>
+    <p><%= f.text_area :comment %></p>
+    <p><%= f.label :誕生日 %></p>
+    <p> <%= f.date_field(
+          :birthday,
+          use_month_numbers: true, # jan, febとかじゃなくて数字で月を表現
+          start_year:     1930, # 何年から表示させるか
+          end_year:       (Time.now.year), # 何年まで表示させるか
+          default:        Date.new(1989, 1, 1), # 最初に表示されている年月日
+          date_separator: '/') # 年月日を仕切る文字
+        %></p>
+    <p><%= f.label :性別 %></p>
+    <%= f.radio_button :gender, 1 %> 男性 <%= f.radio_button :gender, 2 %> 女性 <%= f.radio_button :gender, 3 %> 無回答
+    <p><%= f.label :プロフィール写真%></p>
+    <p><%= f.file_field :my_image %></p>
+    <p><%= f.hidden_field :my_image_cache %></p></br>
+    <%= f.submit "ユーザー情報を更新する" %></br>
+<% end %>
+<button><%= link_to "メインページに戻る", pictures_path %></button>
+</body>

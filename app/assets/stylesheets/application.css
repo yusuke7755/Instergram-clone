@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap/dist/css/bootstrap.min
+ *= require_self
+ *= require_tree .
+
+ */
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    width:100%;
+    text-align: center;
+    font-family: Hannotate SC;
+  }
+  table{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px #140b0b solid;
+    width: 300px; 
+    height: 300px;
+  }
+  table tr{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px #140b0b solid;
+  }
+ 
+
+  table td{
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px #140b0b solid;
+  }
+
+  header {
+    width: 100%;
+    background-color: rgba(247, 90, 17, 0.815);
+    height: 50px;
+    margin: 0;
+    opacity: 0.8;
+    border: 1px solid;
+    border-right: transparent;
+    border-left:transparent;
+    opacity: 0.6;
+    font-size: 1.5rem;
+    color:navy;
+    text-align:center;
+    padding:20px 0;
+   }
+
+  header ul {
+    margin: 0 auto;
+    list-style: none;
+  }
+  #picture_image {
+    display: inline;
+  }
+  #user_my_image {
+    display: inline;
+  }
+  .field_with_errors {
+    display: inline;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #error_explanation {
+    margin-left: auto;
+    margin-right: auto;
+  }
