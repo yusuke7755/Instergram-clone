@@ -1,6 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show ,:edit, :update, :destroy, :cleate]
- 
+  before_action :set_picture, only: [:show ,:edit, :update, :cleate]
   def index
     if params[:id] == nil
       @pictures = current_user.pictures.order(created_at: "DESC")
@@ -16,7 +15,6 @@ class PicturesController < ApplicationController
   end
   
   def show
-    @picture = Picture.find(params[:id])
   end
 
   def edit
@@ -35,6 +33,7 @@ class PicturesController < ApplicationController
     else
       if @picture.save
         PictureMailer.picture_mail(@picture).deliver
+
         redirect_to pictures_path, notice: "新規投稿をしました。"
       else
         render :new
